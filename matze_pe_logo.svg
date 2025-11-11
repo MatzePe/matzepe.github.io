@@ -1,0 +1,140 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#F8FAFC"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main logo container - Clear Brain Design -->
+  <g transform="translate(200, 160)">
+    
+    <!-- LEFT HEMISPHERE -->
+    <path d="M -5,-45 Q -25,-48 -40,-40 Q -52,-30 -52,-10 Q -52,10 -48,25 Q -42,38 -25,42 Q -10,44 -5,40" 
+          stroke="url(#blueGrad)" 
+          stroke-width="4" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- Left brain folds (cortex detail) -->
+    <path d="M -35,-35 Q -30,-32 -35,-28" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M -42,-15 Q -38,-12 -42,-8" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M -40,8 Q -35,12 -38,16" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M -28,28 Q -22,30 -25,34" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- RIGHT HEMISPHERE -->
+    <path d="M 5,-45 Q 25,-48 40,-40 Q 52,-30 52,-10 Q 52,10 48,25 Q 42,38 25,42 Q 10,44 5,40" 
+          stroke="url(#blueGrad)" 
+          stroke-width="4" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- Right brain folds (cortex detail) -->
+    <path d="M 35,-35 Q 30,-32 35,-28" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M 42,-15 Q 38,-12 42,-8" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M 40,8 Q 35,12 38,16" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M 28,28 Q 22,30 25,34" 
+          stroke="#3B82F6" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- Center divider (corpus callosum) -->
+    <line x1="0" y1="-45" x2="0" y2="40" stroke="#CBD5E1" stroke-width="2" opacity="0.3"/>
+    
+    <!-- AI Neural Network Nodes -->
+    <circle cx="-35" cy="-20" r="5" fill="#8B5CF6" filter="url(#glow)"/>
+    <circle cx="-25" cy="5" r="5" fill="#3B82F6" filter="url(#glow)"/>
+    <circle cx="0" cy="-30" r="5" fill="#06B6D4" filter="url(#glow)"/>
+    <circle cx="25" cy="5" r="5" fill="#3B82F6" filter="url(#glow)"/>
+    <circle cx="35" cy="-20" r="5" fill="#8B5CF6" filter="url(#glow)"/>
+    <circle cx="0" cy="20" r="5" fill="#8B5CF6" filter="url(#glow)"/>
+    
+    <!-- Neural connections -->
+    <line x1="-35" y1="-20" x2="0" y2="-30" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    <line x1="0" y1="-30" x2="35" y2="-20" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    <line x1="-35" y1="-20" x2="-25" y2="5" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    <line x1="35" y1="-20" x2="25" y2="5" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    <line x1="-25" y1="5" x2="0" y2="20" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    <line x1="25" y1="5" x2="0" y2="20" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
+    
+  </g>
+  
+  <!-- Company name with modern typography -->
+  <text x="200" y="280" 
+        font-family="'Inter', 'Segoe UI', system-ui, sans-serif" 
+        font-size="52" 
+        font-weight="600" 
+        fill="#1E293B" 
+        text-anchor="middle" 
+        letter-spacing="-1">
+    Matze Pe
+  </text>
+  
+  <!-- Tagline with gradient -->
+  <text x="200" y="315" 
+        font-family="'Inter', 'Segoe UI', system-ui, sans-serif" 
+        font-size="13" 
+        font-weight="400" 
+        fill="#64748B" 
+        text-anchor="middle" 
+        letter-spacing="3">
+    AI WORKFLOW AUTOMATION
+  </text>
+  
+  <!-- Decorative accent line -->
+  <rect x="155" y="325" width="90" height="2" fill="url(#accentGrad)" rx="1" opacity="0.6"/>
+  
+  <!-- Subtle corner elements for modern touch -->
+  <circle cx="80" cy="80" r="3" fill="#3B82F6" opacity="0.2"/>
+  <circle cx="320" cy="80" r="3" fill="#8B5CF6" opacity="0.2"/>
+  <circle cx="80" cy="340" r="3" fill="#06B6D4" opacity="0.2"/>
+  <circle cx="320" cy="340" r="3" fill="#3B82F6" opacity="0.2"/>
+</svg>
