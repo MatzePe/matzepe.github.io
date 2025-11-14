@@ -236,6 +236,56 @@
     input.focus();
   });
 
+    function addMessage(type, text) {
+        const div = document.createElement("div");
+        div.className = type === "user" ? "bubble-user" : "bubble-bot";
+        div.innerHTML = `<span>${text}</span>`;
+        content.appendChild(div);
+        content.scrollTop = content.scrollHeight;
+    }
+
+    function addTyping() {
+        const typing = document.createElement("div");
+        typing.className = "bubble-bot typing";
+        typing.id = "typingIndicator";
+        typing.innerHTML = `<span>🤖 schreibt...</span>`;
+        content.appendChild(typing);
+        content.scrollTop = content.scrollHeight;
+    }
+
+    function removeTyping() {
+        const t = document.getElementById("typingIndicator");
+        if (t) t.remove();
+    }
+    
+    // Send message
+    async function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        addMessage("user", text);
+        input.value = "";
+
+        addTyping();
+
+    try {
+        const res = await fetch("https://matzepe.app.n8n.cloud/webhook-test/111429bd-990c-4303-9ee3-366956e30ccb", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await res.json();
+        removeTyping();
+
+        addMessage("bot", data.reply || "Keine Antwort erhalten.");
+
+        } catch (err) {
+        removeTyping();
+        addMessage("bot", "❗ Fehler bei der Verbindung zu n8n");
+        }
+  }
+    
   // Send button action
   sendBtn.addEventListener("click", () => {
     const text = input.value.trim();
@@ -257,6 +307,7 @@
 
 </body>
 </html>
+
 
 
 
