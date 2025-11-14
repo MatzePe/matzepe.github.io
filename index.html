@@ -278,7 +278,7 @@ const content = document.getElementById("chatContent");
     const data = await res.json();
 
     // Erwartet: { reply: "Antwort von Anna" }
-    return data.reply;
+    return data.output;
         
 } 
 // Toggle window
@@ -363,6 +363,7 @@ input.addEventListener("keypress", e => {
 
 </body>
 </html>
+
 
 
 
