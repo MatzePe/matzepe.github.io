@@ -267,18 +267,19 @@ const sendBtn = document.getElementById("chatSend");
 const content = document.getElementById("chatContent");
 
 // Toggle window
-let greeted = localStorage.getItem("annaGreeted") === "true" ? true : false;;
-    
+let greeted = localStorage.getItem("annaGreeted") === "true" ? true : false;
+
 bubble.addEventListener("click", () => {
   const wasOpen = chatWindow.classList.contains("open");
   chatWindow.classList.toggle("open");
   input.focus();
 
-if(!wasOpen && !greeted) {
+  if(!wasOpen && !greeted) {
     greeted = true;
+    localStorage.setItem("annaGreeted", "true");
     setTimeout(() => {
       addBubble("bot", "Hallo! Ich bin Anna 🤖. Wie kann ich dir helfen?");
-    }, 300); // kleine Verzögerung, wirkt natürlicher
+    }, 300);
   }
 });
 
@@ -347,6 +348,7 @@ input.addEventListener("keypress", e => {
 
 </body>
 </html>
+
 
 
 
