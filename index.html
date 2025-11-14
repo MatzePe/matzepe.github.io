@@ -215,6 +215,12 @@
 <div id="chatWindow">
     <div id="chatHeader">Chatbot</div>
     <div id="chatContent">Hallo! Wie kann ich helfen?</div>
+
+    <!-- Input Area -->
+    <div id="chatInputArea">
+        <input id="chatInput" type="text" placeholder="Schreib was...">
+        <button id="chatSend">Senden</button>
+    </div>
 </div>
 
 <script>
@@ -222,16 +228,23 @@
   const chatWindow = document.getElementById("chatWindow");
   const sendBtn = document.getElementById("chatSend");
   const input = document.getElementById("chatInput");
+  const content = document.getElementById("chatContent");
 
   // Bubble toggles the chat window
   bubble.addEventListener("click", () => {
     chatWindow.classList.toggle("open");
+    input.focus();
   });
 
   // Send button action
   sendBtn.addEventListener("click", () => {
-    alert("Du hast geschrieben: " + input.value);
+    const text = input.value.trim();
+    if (text === "") return;
+
+    content.innerHTML += `<div><strong>Du:</strong> ${text}</div>`;
+    
     input.value = "";
+    content.scrollTop = content.scrollHeight;
   });
 
   // Enter key = Send
@@ -244,6 +257,7 @@
 
 </body>
 </html>
+
 
 
 
