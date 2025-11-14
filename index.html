@@ -269,8 +269,15 @@ const content = document.getElementById("chatContent");
 
 // Toggle window
 bubble.addEventListener("click", () => {
+  const wasOpen = chatWindow.classList.contains("open");
   chatWindow.classList.toggle("open");
   input.focus();
+
+if(!wasOpen) {
+    setTimeout(() => {
+      addBubble("bot", "Hallo! Ich bin Anna 🤖. Wie kann ich dir helfen?");
+    }, 300); // kleine Verzögerung, wirkt natürlicher
+  }
 });
 chatClose.addEventListener("click", () => chatWindow.classList.remove("open"));
 
@@ -330,6 +337,7 @@ input.addEventListener("keypress", e => {
 
 </body>
 </html>
+
 
 
 
