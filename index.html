@@ -186,6 +186,31 @@
         cursor: pointer;
         font-size: 15px;
         }
+
+        /* Bubbles */
+        .bubble {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 18px;
+            margin: 6px 0;
+            max-width: 75%;
+            word-wrap: break-word;
+            font-size: 14px;
+        }
+
+        .bubble-user {
+            background: #5B9BF2;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .bubble-bot {
+            background: #e6e6e6;
+            color: #222;
+            align-self: flex-start;
+            text-align: left;
+        }
         
     </style>
 </head>
@@ -219,106 +244,91 @@
 
 <!-- Chat Window -->
 <div id="chatWindow">
-    <div id="chatHeader">Chatbot</div>
-    <div id="chatContent">Hallo! Wie kann ich helfen?</div>
+  <div id="chatHeader">
+    <span class="title">Chatbot</span>
+    <button id="chatClose">✕</button>
+  </div>
 
-    <!-- Input Area -->
-    <div id="chatInputArea">
-        <input id="chatInput" type="text" placeholder="Schreib etwas...">
-        <button id="chatSend">Senden</button>
-    </div>
+  <div id="chatContent"></div>
+
+  <div id="chatInputArea">
+    <input id="chatInput" type="text" placeholder="Schreib was...">
+    <button id="chatSend">Senden</button>
+  </div>
 </div>
 
 <script>
-  const bubble = document.getElementById("chatBubble");
-  const chatWindow = document.getElementById("chatWindow");
-  const sendBtn = document.getElementById("chatSend");
-  const input = document.getElementById("chatInput");
-  const content = document.getElementById("chatContent");
+const bubble = document.getElementById("chatBubble");
+const chatWindow = document.getElementById("chatWindow");
+const chatClose = document.getElementById("chatClose");
+const input = document.getElementById("chatInput");
+const sendBtn = document.getElementById("chatSend");
+const content = document.getElementById("chatContent");
 
-  // Toggle window
-  bubble.addEventListener("click", () => {
-    chatWindow.classList.toggle("open");
-    input.focus();
-  });
+// Toggle window
+bubble.addEventListener("click", () => {
+  chatWindow.classList.toggle("open");
+  input.focus();
+});
+chatClose.addEventListener("click", () => chatWindow.classList.remove("open"));
 
-  function addMessage(type, text) {
-    const div = document.createElement("div");
-    div.className = type === "user" ? "bubble-user" : "bubble-bot";
-    div.innerHTML = `<span>${text}</span>`;
-    content.appendChild(div);
-    content.scrollTop = content.scrollHeight;
+// Add message bubble
+function addBubble(type, text) {
+  const div = document.createElement("div");
+  div.className = `bubble ${type === "user" ? "bubble-user" : "bubble-bot"}`;
+  div.innerText = text;
+  content.appendChild(div);
+  content.scrollTop = content.scrollHeight;
+}
+
+// Typing indicator
+function addTyping() {
+  const t = document.createElement("div");
+  t.className = "bubble bubble-bot typing";
+  t.id = "typingIndicator";
+  t.innerText = "🤖 schreibt...";
+  content.appendChild(t);
+  content.scrollTop = content.scrollHeight;
+}
+function removeTyping() {
+  const t = document.getElementById("typingIndicator");
+  if(t) t.remove();
+}
+
+// Send message
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addBubble("user", text);
+  input.value = "";
+  addTyping();
+
+  try {
+    const res = await fetch("https://matzepe.app.n8n.cloud/webhook-test/111429bd-990c-4303-9ee3-366956e30ccb", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: text})
+    });
+    const data = await res.json();
+    removeTyping();
+    addBubble("bot", data.reply || "Keine Antwort erhalten.");
+  } catch(e) {
+    removeTyping();
+    addBubble("bot", "❗ Fehler bei der Verbindung zu n8n");
   }
+}
 
-  function addTyping() {
-    const typing = document.createElement("div");
-    typing.className = "bubble-bot typing";
-    typing.id = "typingIndicator";
-    typing.innerHTML = `<span>🤖 schreibt...</span>`;
-    content.appendChild(typing);
-    content.scrollTop = content.scrollHeight;
-  }
-
-  function removeTyping() {
-    const t = document.getElementById("typingIndicator");
-    if (t) t.remove();
-  }
-
-  // Send message
-  async function sendMessage() {
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMessage("user", text);
-    input.value = "";
-
-    addTyping();
-
-    try {
-      const res = await fetch("https://matzepe.app.n8n.cloud/webhook-test/111429bd-990c-4303-9ee3-366956e30ccb", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ message: text })
-      });
-
-      const data = await res.json();
-      removeTyping();
-
-      addMessage("bot", data.reply || "Keine Antwort erhalten.");
-
-    } catch (err) {
-      removeTyping();
-      addMessage("bot", "❗ Fehler bei der Verbindung zu n8n");
-    }
-  }
-
-  sendBtn.addEventListener("click", sendMessage);
-  input.addEventListener("keypress", e => {
-    if (e.key === "Enter") sendMessage();
-  });
-    
-  // Send button action
-  sendBtn.addEventListener("click", () => {
-    const text = input.value.trim();
-    if (text === "") return;
-
-    content.innerHTML += `<div><strong>Du:</strong> ${text}</div>`;
-    
-    input.value = "";
-    content.scrollTop = content.scrollHeight;
-  });
-
-  // Enter key = Send
-  input.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-      sendBtn.click();
-    }
-  });
+sendBtn.addEventListener("click", sendMessage);
+input.addEventListener("keypress", e => {
+  if(e.key === "Enter") sendMessage();
+});
     
 </script>
 
 </body>
 </html>
+
 
 
 
