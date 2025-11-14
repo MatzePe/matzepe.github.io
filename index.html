@@ -219,15 +219,32 @@
 
 <script>
   const bubble = document.getElementById("chatBubble");
-  const windowBox = document.getElementById("chatWindow");
+  const chatWindow = document.getElementById("chatWindow");
+  const sendBtn = document.getElementById("chatSend");
+  const input = document.getElementById("chatInput");
 
+  // Bubble toggles the chat window
   bubble.addEventListener("click", () => {
-    windowBox.classList.toggle("open");
+    chatWindow.classList.toggle("open");
+  });
+
+  // Send button action
+  sendBtn.addEventListener("click", () => {
+    alert("Du hast geschrieben: " + input.value);
+    input.value = "";
+  });
+
+  // Enter key = Send
+  input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      sendBtn.click();
+    }
   });
 </script>
 
 </body>
 </html>
+
 
 
 
