@@ -248,7 +248,6 @@
 <div id="chatWindow">
   <div id="chatHeader">
     <span class="title">Anna</span>
-    <button id="chatClose">✕</button>
   </div>
 
   <div id="chatContent"></div>
@@ -279,7 +278,6 @@ if(!wasOpen) {
     }, 300); // kleine Verzögerung, wirkt natürlicher
   }
 });
-chatClose.addEventListener("click", () => chatWindow.classList.remove("open"));
 
 // Add message bubble
 function addBubble(type, text) {
@@ -337,6 +335,7 @@ input.addEventListener("keypress", e => {
 
 </body>
 </html>
+
 
 
 
