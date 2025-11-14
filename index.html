@@ -137,7 +137,7 @@ async function sendMessage() {
   messages.innerHTML += `<div><strong>Du:</strong> ${userMsg}</div>`;
   input.value = "";
 
-  const res = await fetch("YOUR_WEBHOOK_URL", {
+  const res = await fetch("https://matzepe.app.n8n.cloud/webhook-test/111429bd-990c-4303-9ee3-366956e30ccb", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ message: userMsg })
@@ -153,6 +153,7 @@ async function sendMessage() {
     
 </body>
 </html>
+
 
 
 
