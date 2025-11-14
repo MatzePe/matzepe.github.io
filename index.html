@@ -196,8 +196,18 @@
     <div id="chatContent">Hallo! Wie kann ich helfen?</div>
 </div>
 
+<script>
+  const bubble = document.getElementById("chatBubble");
+  const windowBox = document.getElementById("chatWindow");
+
+  bubble.addEventListener("click", () => {
+    windowBox.classList.toggle("open");
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
