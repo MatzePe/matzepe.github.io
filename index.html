@@ -159,6 +159,95 @@
         padding: 12px;
         font-size: 16px;
         }
+
+        /* Chat Bubble */
+        #chatBubble {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: #5B9BF2;
+        border-radius: 50%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: white;
+        font-size: 28px;
+        z-index: 9999;
+        transition: transform 0.2s ease;
+        }
+
+        #chatBubble:hover {
+        transform: scale(1.1);
+        }
+
+        /* Chat Window */
+        #chatWindow {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 320px;
+        height: 380px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 9999;
+
+        /* Initially hidden */
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s ease;
+        }
+
+        /* Visible Chat Window */
+        #chatWindow.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        }
+
+        #chatHeader {
+        background: #5B9BF2;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        }
+
+        #chatContent {
+        flex: 1;
+        padding: 12px;
+        font-size: 15px;
+        }
+
+        #chatInputArea {
+        display: flex;
+        border-top: 1px solid #ddd;
+        }
+
+        #chatInput {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        font-size: 15px;
+        }
+
+        #chatSend {
+        width: 80px;
+        background: #5B9BF2;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        }
         
     </style>
 </head>
@@ -207,6 +296,7 @@
 
 </body>
 </html>
+
 
 
 
