@@ -267,28 +267,20 @@ const sendBtn = document.getElementById("chatSend");
 const content = document.getElementById("chatContent");
 
  // Wichtig: WEBHOOK-URL EINTRAGEN
-  const N8N_WEBHOOK_URL = "https://matzepe.app.n8n.cloud/webhook-test/anna-chat";
-
-  async function sendToN8N(message) {
-    try {
-      const res = await fetch(N8N_WEBHOOK_URL, {
+    async function sendToAnna(message) {
+    const res = await fetch("https://matzepe.app.n8n.cloud/webhook-test/anna-chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })
-      });
+    });
 
-      const data = await res.json();
+    // Antwort als JSON lesen
+    const data = await res.json();
 
-      // Antwort von Anna anzeigen
-      addBotMessage(data.reply);
-
-    } catch (err) {
-      addBotMessage("⚠️ Fehler bei der Verbindung zu Anna.");
-    }
-  } 
-    
+    // Erwartet: { reply: "Antwort von Anna" }
+    return data.reply;
+        
+} 
 // Toggle window
 let greeted = localStorage.getItem("annaGreeted") === "true" ? true : false;
 
@@ -371,6 +363,7 @@ input.addEventListener("keypress", e => {
 
 </body>
 </html>
+
 
 
 
