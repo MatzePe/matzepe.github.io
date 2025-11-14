@@ -119,8 +119,41 @@
     &copy; 2025 Matze Pe
 </footer>
 
+<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
+  <div id="messages" style="height: 200px; overflow-y: auto; border-bottom: 1px solid #eee; margin-bottom: 10px;"></div>
+
+  <input id="userInput" type="text" placeholder="Schreib was..." style="width: 100%; padding: 8px;">
+  <button onclick="sendMessage()" style="width: 100%; margin-top: 5px;">Senden</button>
+</div>
+
+<script>
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const messages = document.getElementById('messages');
+
+  const userMsg = input.value;
+  if (!userMsg) return;
+
+  messages.innerHTML += `<div><strong>Du:</strong> ${userMsg}</div>`;
+  input.value = "";
+
+  const res = await fetch("YOUR_WEBHOOK_URL", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ message: userMsg })
+  });
+
+  const data = await res.json();
+  const botMsg = data.reply || "Keine Antwort erhalten";
+
+  messages.innerHTML += `<div><strong>Bot:</strong> ${botMsg}</div>`;
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
+    
 </body>
 </html>
+
 
 
 
