@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hair Salon Autopilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header {
+      padding: 120px 20px;
+      text-align: center;
+      background: linear-gradient(120deg, #ffafbd, #ffc3a0, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+      color: #111;
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 60px;
+      font-weight: 700;
+      margin: 0 0 20px;
+      color: #111;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.5);
+    }
+    header p {
+      font-size: 22px;
+      max-width: 650px;
+      margin: 0 auto 35px;
+      color: #222;
+    }
+    .btn {
+      display: inline-block;
+      padding: 16px 34px;
+      background: #ff6b6b;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .btn:hover {
+      background: #ff3b3b;
+      transform: translateY(-3px);
+    }
+    .scissors {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      top: 20px;
+      right: 20px;
+      background: url('https://img.icons8.com/ios-filled/100/000000/hair-scissors.png') no-repeat center center;
+      background-size: contain;
+      animation: swing 2s ease-in-out infinite;
+    }
+    @keyframes swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(15deg); }
+    }
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+    }
+    h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .card {
+      padding: 30px;
+      border-radius: 14px;
+      background: #f8f8f8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      color: #111;
+    }
+    .price-card {
+      background: #111;
+      color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+    .price-card h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .price-card .price {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="scissors"></div>
+  <h1>Mehr Neukunden für deinen Salon. Voll automatisch.</h1>
+  <p>Der Hair Salon Autopilot bringt dir mehr Termine, bessere Bewertungen und tägliche Social-Media-Posts — ohne Aufwand.</p>
+  <a href="#demo" class="btn">Kostenlose Demo sichern</a>
+</header>
+
+<section>
+  <h2>So funktioniert's</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1) Täglicher KI-Content</h3>
+      <p>Reels, Posts, Vorher/Nachher – vollautomatisch. Kein Filmen, kein Schneiden.</p>
+    </div>
+    <div class="card">
+      <h3>2) Automatisierte Antworten</h3>
+      <p>Der Bot beantwortet alle Kundenanfragen sofort – Preise, Termine, Öffnungszeiten.</p>
+    </div>
+    <div class="card">
+      <h3>3) Mehr Neukunden</h3>
+      <p>Lokale Funnels, Bewertungen und Reaktivierung sorgen für volle Stühle.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Pakete & Preise</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Starter</h3>
+      <p><strong>199€/Monat</strong></p>
+      <p>Für kleine Salons, die endlich regelmäßig posten wollen.</p>
+    </div>
+    <div class="price-card">
+      <h3>Pro</h3>
+      <div class="price">499€/Monat</div>
+      <p>Der komplette Autopilot für volle Stühle.</p>
+    </div>
+    <div class="card">
+      <h3>Ultimate</h3>
+      <p><strong>999€/Monat</strong></p>
+      <p>Für Salons, die komplett durchautomatisieren wollen.</p>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <h2>Bereit für mehr Buchungen?</h2>
+  <p style="text-align:center; max-width:600px; margin:auto;">Wir zeigen dir in 10 Minuten, wie dein Salon automatisch wächst. Keine Verpflichtung.</p>
+  <div style="text-align:center; margin-top:30px;">
+    <a href="#" class="btn">Kostenlose Demo sichern</a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Hair Salon Autopilot – Automatisiertes Marketing für Friseursalons
+</footer>
+
+</body>
+</html>
