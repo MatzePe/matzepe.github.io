@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html><html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -116,66 +115,61 @@
       text-align: center;
       padding: 40px;
       background: #f1f1f1;
-    }
+    }/* MOBILE OPTIMIERUNG */
+@media (max-width: 768px) {
+  header {
+    padding: 80px 20px;
+  }
+  header h1 {
+    font-size: 36px;
+  }
+  header p {
+    font-size: 18px;
+  }
+  .scissors {
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+  }
+  .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+  section {
+    padding: 50px 15px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  .card, .price-card {
+    padding: 20px;
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 28px;
+  }
+  header p {
+    font-size: 16px;
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  .grid {
+    gap: 20px;
+  }
+}
 
-    /* MOBILE OPTIMIERUNG */
-    @media (max-width: 768px) {
-      header {
-        padding: 80px 20px;
-      }
-      header h1 {
-        font-size: 36px;
-      }
-      header p {
-        font-size: 18px;
-      }
-      .scissors {
-        width: 50px;
-        height: 50px;
-        top: 10px;
-        right: 10px;
-      }
-      .btn {
-        padding: 12px 24px;
-        font-size: 16px;
-      }
-      section {
-        padding: 50px 15px;
-      }
-      h2 {
-        font-size: 28px;
-      }
-      .card, .price-card {
-        padding: 20px;
-      }
-    }
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 28px;
-      }
-      header p {
-        font-size: 16px;
-      }
-      .btn {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-      .grid {
-        gap: 20px;
-      }
-    }
   </style>
 </head>
-<body>
-
-<header>
+<body><header>
   <div class="scissors"></div>
   <h1>Mehr Neukunden für deinen Salon. Voll automatisch.</h1>
   <p>Der Hair Salon Autopilot bringt dir mehr Termine, bessere Bewertungen und tägliche Social-Media-Posts — ohne Aufwand.</p>
   <a href="#demo" class="btn">Kostenlose Demo sichern</a>
-</header>
-
-<section>
+</header><section>
   <h2>So funktioniert's</h2>
   <div class="grid">
     <div class="card">
@@ -191,9 +185,7 @@
       <p>Lokale Funnels, Bewertungen und Reaktivierung sorgen für volle Stühle.</p>
     </div>
   </div>
-</section>
-
-<section>
+</section><section>
   <h2>Pakete & Preise</h2>
   <div class="grid">
     <div class="card">
@@ -212,19 +204,73 @@
       <p>Für Salons, die komplett durchautomatisieren wollen.</p>
     </div>
   </div>
-</section>
-
-<section id="demo">
+</section><section id="demo">
   <h2>Bereit für mehr Buchungen?</h2>
   <p style="text-align:center; max-width:600px; margin:auto;">Wir zeigen dir in 10 Minuten, wie dein Salon automatisch wächst. Keine Verpflichtung.</p>
   <div style="text-align:center; margin-top:30px;">
     <a href="#" class="btn">Kostenlose Demo sichern</a>
   </div>
-</section>
-
-<footer>
+</section><footer>
   © 2025 Hair Salon Autopilot – Automatisiertes Marketing für Friseursalons
-</footer>
+</footer><!-- Chat Button --><div id="chat-btn" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:14px 20px;border-radius:50px;cursor:pointer;z-index:9999;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.2);">Chat mit uns</div><!-- Chat Fenster --><div id="chat-box" style="display:none;position:fixed;bottom:80px;right:20px;width:90%;max-width:350px;height:70%;background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;flex-direction:column;overflow:hidden;z-index:9999;">
+  <div id="chat-header" style="background:#25D366;color:white;padding:12px;font-weight:bold;text-align:center;font-size:16px;">Hair Salon Autopilot</div>
+  <div id="chat-messages" style="flex:1;padding:10px;overflow-y:auto;background:#f0f0f0;"></div>
+  <div style="display:flex;border-top:1px solid #ccc;">
+    <input id="chat-input" type="text" placeholder="Schreib uns..." style="flex:1;padding:10px;border:none;font-size:14px;" />
+    <button id="chat-send" style="background:#25D366;color:white;border:none;padding:0 16px;font-weight:bold;cursor:pointer;">Senden</button>
+  </div>
+</div><script>
+const btn = document.getElementById('chat-btn');
+const box = document.getElementById('chat-box');
+const input = document.getElementById('chat-input');
+const messages = document.getElementById('chat-messages');
+const sendBtn = document.getElementById('chat-send');
 
-</body>
+btn.onclick = () => box.style.display = box.style.display==='none'?'flex':'none';
+
+function appendMessage(text, sender){
+    const msgDiv = document.createElement('div');
+    msgDiv.textContent = text;
+    msgDiv.style.padding = '8px 12px';
+    msgDiv.style.margin = '6px 0';
+    msgDiv.style.borderRadius = '18px';
+    msgDiv.style.maxWidth = '80%';
+    msgDiv.style.wordWrap = 'break-word';
+    msgDiv.style.fontSize = '14px';
+    msgDiv.style.lineHeight = '1.3';
+    if(sender==='user'){
+        msgDiv.style.background = '#DCF8C6';
+        msgDiv.style.alignSelf = 'flex-end';
+    } else {
+        msgDiv.style.background = '#fff';
+        msgDiv.style.alignSelf = 'flex-start';
+    }
+    messages.appendChild(msgDiv);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+async function sendMessage(message){
+    appendMessage(message, 'user');
+    appendMessage('...', 'bot');
+
+    try{
+        const res = await fetch('https://dein-backend.example.com/chat',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({message})
+        });
+        const data = await res.json();
+        messages.lastChild.textContent = data.reply;
+    } catch(e){
+        messages.lastChild.textContent = 'Ups, etwas ist schief gelaufen.';
+    }
+}
+
+sendBtn.onclick = () => {
+    if(input.value.trim()!==''){ sendMessage(input.value); input.value=''; }
+};
+input.addEventListener('keypress', e => {
+    if(e.key==='Enter' && input.value.trim()!==''){ sendMessage(input.value); input.value=''; }
+});
+</script></body>
 </html>
